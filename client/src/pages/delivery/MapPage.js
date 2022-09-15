@@ -4,11 +4,13 @@ import DeliveryContext from '../../context/DeliveryProvider'
 import axios from 'axios'
 import TopNav from '../../components/TopNav'
 import FooterD from './FooterD'
+import { FAST_HOST } from '../../api/apiURL'
 
 const MapPage = () => {
 	let selectcontent = null
-	const HOST = "http://localhost:8000"
-	// const HOST = "http://140.118.122.148:30308"
+	// const FAST_HOST = "http://localhost:8000"
+	// const FAST_HOST = "http://140.118.122.148:30310"
+
 
 	const { allOrders } = useContext(DeliveryContext)
 
@@ -44,12 +46,12 @@ const MapPage = () => {
 
 	const pictureUrl = {
 		//初始化位置
-		updatePosition: `${HOST}/info/` + orderdata.Id + "/?start=" + orderdata.Res + '&end=' + orderdata.Des + '&deliver=[' + deliver.lat + ',' + deliver.lng + ']',
+		updatePosition: `${FAST_HOST}/info/` + orderdata.Id + "/?start=" + orderdata.Res + '&end=' + orderdata.Des + '&deliver=[' + deliver.lat + ',' + deliver.lng + ']',
 		//選擇要導航的路線
-		updateRoute: `${HOST}/info/` + orderdata.Id + "/?start=" + restaurant.number + '&end=' + place.name + '&deliver=[' + deliver.lat + ',' + deliver.lng + ']',
-		position: `${HOST}/get/` + orderdata.Id + '/deliver/',
-		deliverpath: `${HOST}/get/` + orderdata.Id + '/route/',
-		delete: `${HOST}/del/` + orderdata.Id,
+		updateRoute: `${FAST_HOST}/info/` + orderdata.Id + "/?start=" + restaurant.number + '&end=' + place.name + '&deliver=[' + deliver.lat + ',' + deliver.lng + ']',
+		position: `${FAST_HOST}/get/` + orderdata.Id + '/deliver/',
+		deliverpath: `${FAST_HOST}/get/` + orderdata.Id + '/route/',
+		delete: `${FAST_HOST}/del/` + orderdata.Id,
 		clean: "https://i.imgur.com/VVkrlih.jpg"
 	}
 

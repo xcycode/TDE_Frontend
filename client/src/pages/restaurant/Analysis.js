@@ -4,7 +4,7 @@ import TopNav from '../../components/TopNav'
 import ExportFtr from './ExportFtr'
 import useAuth from "../../hooks/useAuth";
 import axios from 'axios'
-import { GET_INFO_STORE } from '../../api/apiURL'
+import { FAST_HOST, GET_INFO_STORE } from '../../api/apiURL'
 
 const getCookie = (name) => {
     const strCookie = document.cookie;
@@ -50,7 +50,7 @@ const Analysis = () => {
 
     const getReport = () => {
         axios({
-            url: `http://localhost:8000/finances/${storeName}`,
+            url: `${FAST_HOST}/finances/${storeName}`,
             method: 'POST',
             params: timeInterval,
             responseType: 'blob', // important

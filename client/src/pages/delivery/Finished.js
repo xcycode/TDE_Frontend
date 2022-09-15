@@ -6,6 +6,7 @@ import ChatContext from '../../context/ChatProvider';
 import axios from 'axios'
 import TopNav from '../../components/TopNav'
 import { FaCheckCircle } from "react-icons/fa";
+import { FAST_HOST } from '../../api/apiURL';
 
 const Finished = () => {
     const { allOrders, removeOrder } = useContext(DeliveryContext)
@@ -21,11 +22,12 @@ const Finished = () => {
         fontWeight: 'bold',
         color: 'white'
     }
+    
 
     useEffect(() => {
         // console.log(allOrders)
         ChatReset()
-        axios.get(`http://localhost:8000/del/${allOrders[0].Orderid}`).then(
+        axios.get(`${FAST_HOST}/del/${allOrders[0].Orderid}`).then(
             removeOrder(allOrders[0].Orderid)
         )
     }, []);

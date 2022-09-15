@@ -61,6 +61,7 @@ const Profile = () => {
         url = GET_INFO_USER
     }
 
+
     useEffect(() => {
         console.log(useraccount)
     }, []);
@@ -69,6 +70,7 @@ const Profile = () => {
 
     useEffect(() => {
         if (useraccount !== "") {
+            console.log(url)
             axios.post(url,
                 JSON.stringify({ account: useraccount }),
                 {
@@ -78,10 +80,13 @@ const Profile = () => {
                 .then(response => {
                     setUserprofile(response.data.msg)
                     // console.log(response?.data)
+                    console.log(userprofile.Deliver_accept)
                 })
                 .catch((error) => console.log(error))
         }
     }, [url]);
+
+    
 
     const handleClose = () => {
         setShow(false);
@@ -100,6 +105,8 @@ const Profile = () => {
         setAuth({})
         navigate('/')
     }
+
+    console.log(userprofile)
 
     const signup = (account, password) => {
         axios.post(SIGN_UP_DELIVERY,
@@ -203,7 +210,7 @@ const Profile = () => {
                             <Col xs={1} />
                             <Col >
                                 <div className="d-grid">
-                                    <Button variant="danger" onClick={() => signup()}>
+                                    <Button variant="danger" onClick={() => signup(userprofile.Account,userprofile.Password)}>
                                         是
                                     </Button>
                                 </div>

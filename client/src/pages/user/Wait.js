@@ -4,7 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import CartContext from '../../context/CartProvider';
 import ChatContext from '../../context/ChatProvider';
 import axios from 'axios'
-import { GET_ORDER_USER } from '../../api/apiURL';
+import { FAST_HOST, GET_ORDER_USER } from '../../api/apiURL';
 import TopNav from '../../components/TopNav';
 import { useNavigate } from 'react-router-dom';
 import { FaCheckCircle } from "react-icons/fa";
@@ -24,7 +24,8 @@ const getCookie = (name) => {
 
 
 const Wait = () => {
-    const HOST = "http://localhost:8000"
+    // const FAST_HOST = "http://localhost:8000"
+    
     // const HOST = "http://140.118.122.148:30308"
     const cleanMap = "https://i.imgur.com/VVkrlih.jpg"
     const navigate = useNavigate()
@@ -75,7 +76,7 @@ const Wait = () => {
 
         const interval = setInterval(() => {
             checkOrderStatus(interval)
-        }, 10000);
+        }, 5000);
     }, []);
 
 
@@ -96,7 +97,7 @@ const Wait = () => {
                         setDeliveryName(response.data.msg[0].Delivery)
                     } else if (response.data.msg[0].Status === "token") {
                         setStatus("token")
-                        updateMap(`${HOST}/get/` + response.data.msg[0].Orderid + '/deliver/')
+                        updateMap(`${FAST_HOST}/get/` + response.data.msg[0].Orderid + '/deliver/')
                     }
                     else {
                         console.log(response.data.msg[0].Status)

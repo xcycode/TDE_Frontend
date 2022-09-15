@@ -4,11 +4,14 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { GrElevator, GrList, GrMap, GrChatOption, GrChat } from "react-icons/gr";
 import DeliveryContext from '../../context/DeliveryProvider'
 import axios from 'axios'
+import { FAST_HOST } from '../../api/apiURL';
 
 const FooterD = ({ isMapPage, getlocation }) => {
     const navigate = useNavigate()
-    const HOST = "http://localhost:8000"
-    // const HOST = "http://140.118.122.148:30308"
+    // const HOST = "http://localhost:8000"
+    // const HOST = "http://140.118.122.148:30310"
+
+
 
     const { allOrders } = useContext(DeliveryContext)
     const [deliver, setDeliver] = useState({
@@ -23,7 +26,7 @@ const FooterD = ({ isMapPage, getlocation }) => {
         Location: allOrders[0].Location
     })
 
-    const updatePosition = `${HOST}/info/` + orderdata.Id + "/?start=" + orderdata.Res + '&end=' + orderdata.Des + '&deliver=[' + deliver.lat + ',' + deliver.lng + ']'
+    const updatePosition = `${FAST_HOST}/info/` + orderdata.Id + "/?start=" + orderdata.Res + '&end=' + orderdata.Des + '&deliver=[' + deliver.lat + ',' + deliver.lng + ']'
 
     const style = {
         backgroundColor: "white",
